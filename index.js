@@ -9,8 +9,28 @@ binaryTree.prototype = {
 
   // Method to see if tree contains a value
   contains: function(val) {
-
+    var currentNode = this.root;
+    // Case for no root
+    if(!currentNode) {
+      console.error('This tree does not yet contain any values');
+      return;
+    }
+    while(currentNode) {
+      if(!currentNode) {
+        return false;
+      }
+      else if(val === currentNode.value) {
+        return true;
+      }
+      else if(val < currentNode.value) {
+        currentNode = currentNode.left;
+      }
+      else {
+        currentNode = currentNode.right;
+      }
+    }
   },
+
   // Add node method
   add: function(val) {
     var root = this.root;
@@ -43,14 +63,17 @@ binaryTree.prototype = {
       }
     } // while loop
   }, // add method
+
   // Remove node method
   remove: function(val) {
 
   }, // remove method
+
   // Get size method
   size: function() {
 
   }, // size method
+
   // Get min value
   min: function() {
     var currentNode = this.root;
@@ -68,6 +91,7 @@ binaryTree.prototype = {
       }
     }
   }, // min method
+
   // Get max value
   max: function() {
     var currentNode = this.root;
@@ -84,7 +108,12 @@ binaryTree.prototype = {
         currentNode = currentNode.right;
       }
     }
-  } // max method
+  }, // max method
+
+  // Get sorted array of values
+  toArray: function() {
+
+  } // toArray method
 };
 
 function binaryTree() {
