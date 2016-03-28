@@ -7,6 +7,10 @@ binaryTree.prototype = {
   // Constructor
   constructor: binaryTree,
 
+  // Method to see if tree contains a value
+  contains: function(val) {
+
+  },
   // Add node method
   add: function(val) {
     var root = this.root;
@@ -38,7 +42,49 @@ binaryTree.prototype = {
         }
       }
     } // while loop
-  } // add method
+  }, // add method
+  // Remove node method
+  remove: function(val) {
+
+  }, // remove method
+  // Get size method
+  size: function() {
+
+  }, // size method
+  // Get min value
+  min: function() {
+    var currentNode = this.root;
+    // Case for no root
+    if(!currentNode) {
+      console.error('This tree does not yet contain any values');
+      return;
+    }
+    while(currentNode) {
+      if(!currentNode.left) {
+        return currentNode;
+      }
+      else {
+        currentNode = currentNode.left;
+      }
+    }
+  }, // min method
+  // Get max value
+  max: function() {
+    var currentNode = this.root;
+    // Case for no root
+    if(!currentNode) {
+      console.error('This tree does not yet contain any values');
+      return;
+    }
+    while(currentNode) {
+      if(!currentNode.right) {
+        return currentNode;
+      }
+      else {
+        currentNode = currentNode.right;
+      }
+    }
+  } // max method
 };
 
 function binaryTree() {
