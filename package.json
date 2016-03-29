@@ -4,7 +4,7 @@
   "description": "Binary search tree",
   "main": "index.js",
   "scripts": {
-    "test": "node test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
     "tree"
   ],
   "author": "Luke Epp",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "2.4.5"
+  }
 }
