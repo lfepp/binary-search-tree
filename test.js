@@ -18,7 +18,8 @@ describe('binary tree tests', function() {
     test.add(1);
     test.add(92);
 
-    expect(test).to.equal({
+    expect(test).to.be.a('Object');
+    expect(test).to.deep.equal({
       root:
        { value: 7,
          left:
