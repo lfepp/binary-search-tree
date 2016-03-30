@@ -5,14 +5,19 @@ var expect = require('chai').expect;
 
 describe('binary tree tests', function() {
 
-  /*it('see if the tree contains a value', function() {
+  it('see if the tree contains a value', function() {
     var test = new binaryTree();
     test.add(7);
     test.add(43);
     test.add(13);
+    var test1 = test.contains(7);
+    var test2 = test.contains(50);
+    var test3 = test.contains(13);
 
-    expect()
-  });*/
+    expect(test1).to.be.true;
+    expect(test2).to.be.false;
+    expect(test3).to.be.true;
+  });
 
   it('adds values to the binary tree', function () {
     var test = new binaryTree();

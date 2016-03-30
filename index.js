@@ -15,7 +15,7 @@ binaryTree.prototype = {
       console.error('This tree does not yet contain any values');
       return;
     }
-    while(currentNode) {
+    while(true) {
       if(!currentNode) {
         return false;
       }
