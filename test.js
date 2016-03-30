@@ -5,6 +5,15 @@ var expect = require('chai').expect;
 
 describe('binary tree tests', function() {
 
+  /*it('see if the tree contains a value', function() {
+    var test = new binaryTree();
+    test.add(7);
+    test.add(43);
+    test.add(13);
+
+    expect()
+  });*/
+
   it('adds values to the binary tree', function () {
     var test = new binaryTree();
     test.add(7);
@@ -18,8 +27,7 @@ describe('binary tree tests', function() {
     test.add(1);
     test.add(92);
 
-    expect(test).to.be.a('Object');
-    expect(test).to.deep.equal({
+    expect(JSON.stringify(test)).to.equal(JSON.stringify({
       root:
        { value: 7,
          left:
@@ -39,7 +47,7 @@ describe('binary tree tests', function() {
              { value: 82,
                left: null,
                right: { value: 92, left: null, right: null } } } }
-    });
+    }));
   });
 
 });

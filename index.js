@@ -82,14 +82,10 @@ binaryTree.prototype = {
       console.error('This tree does not yet contain any values');
       return;
     }
-    while(currentNode) {
-      if(!currentNode.left) {
-        return currentNode;
-      }
-      else {
-        currentNode = currentNode.left;
-      }
+    while(currentNode.left) {
+      currentNode = currentNode.left;
     }
+    return currentNode;
   }, // min method
 
   // Get max value
@@ -100,14 +96,10 @@ binaryTree.prototype = {
       console.error('This tree does not yet contain any values');
       return;
     }
-    while(currentNode) {
-      if(!currentNode.right) {
-        return currentNode;
-      }
-      else {
-        currentNode = currentNode.right;
-      }
+    while(currentNode.right) {
+      currentNode = currentNode.right;
     }
+    return currentNode;
   }, // max method
 
   // Get sorted array of values
