@@ -3,7 +3,7 @@
 var binaryTree = require("./");
 var expect = require('chai').expect;
 
-describe('binary tree tests', function() {
+describe('binary tree tests =>', function() {
 
   it('see if the tree contains a value', function() {
     var test = new binaryTree();
@@ -53,6 +53,34 @@ describe('binary tree tests', function() {
                left: null,
                right: { value: 92, left: null, right: null } } } }
     }));
+  });
+
+  /*it('removes nodes from the binary tree', function() {
+
+});*/
+
+  /*it('queries the size of the binary tree', function() {
+
+});*/
+
+  it('queries the minimum value of the binary tree', function() {
+    var test = new binaryTree();
+    test.add(3);
+    test.add(7);
+    test.add(9);
+    test.add(2);
+    test.add(13);
+    expect(test.min()).to.equal(2);
+  });
+
+  it('queries the maximum value of the binary tree', function() {
+    var test = new binaryTree();
+    test.add(3);
+    test.add(7);
+    test.add(9);
+    test.add(2);
+    test.add(13);
+    expect(test.max()).to.equal(13);
   });
 
 });

@@ -85,7 +85,7 @@ binaryTree.prototype = {
     while(currentNode.left) {
       currentNode = currentNode.left;
     }
-    return currentNode;
+    return currentNode.value;
   }, // min method
 
   // Get max value
@@ -99,7 +99,7 @@ binaryTree.prototype = {
     while(currentNode.right) {
       currentNode = currentNode.right;
     }
-    return currentNode;
+    return currentNode.value;
   }, // max method
 
   // Get sorted array of values
