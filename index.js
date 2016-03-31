@@ -71,7 +71,11 @@ binaryTree.prototype = {
 
   // Get size method
   size: function() {
-
+    var output = 0;
+    this.traverse(function(currentNode) {
+      output++;
+    });
+    return output;
   }, // size method
 
   // Get min value
@@ -104,8 +108,27 @@ binaryTree.prototype = {
 
   // Get sorted array of values
   toArray: function() {
+    var arr = [];
+    this.traverse(function(currentNode) {
+      arr.push(currentNode.value);
+    });
+    return arr;
+  }, // toArray method
 
-  } // toArray method
+  // Helper traverse method for size() and toArray()
+  traverse: function(method) {
+    inOrder(this.root);
+    // Helper method for traversing the nodes in order
+    function inOrder(currentNode) {
+      if(currentNode.left) {
+        inOrder(currentNode.left);
+      }
+      method.call(this, currentNode);
+      if(currentNode.right) {
+        inOrder(currentNode.right);
+      }
+    };
+  } // traverse method
 };
 
 function binaryTree() {

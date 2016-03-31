@@ -59,9 +59,20 @@ describe('binary tree tests =>', function() {
 
 });*/
 
-  /*it('queries the size of the binary tree', function() {
-
-});*/
+  it('queries the size of the binary tree', function() {
+    var test = new binaryTree();
+    test.add(7);
+    test.add(43);
+    test.add(13);
+    test.add(27);
+    test.add(82);
+    test.add(2);
+    test.add(19);
+    test.add(8);
+    test.add(1);
+    test.add(92);
+    expect(test.size()).to.equal(10);
+});
 
   it('queries the minimum value of the binary tree', function() {
     var test = new binaryTree();
@@ -81,6 +92,21 @@ describe('binary tree tests =>', function() {
     test.add(2);
     test.add(13);
     expect(test.max()).to.equal(13);
+  });
+
+  it('queries for the binary tree as an array of values', function() {
+    var test = new binaryTree();
+    test.add(7);
+    test.add(43);
+    test.add(13);
+    test.add(27);
+    test.add(82);
+    test.add(2);
+    test.add(19);
+    test.add(8);
+    test.add(1);
+    test.add(92);
+    expect(test.toArray()).to.deep.equal([1, 2, 7, 8, 13, 19, 27, 43, 82, 92]);
   });
 
 });
