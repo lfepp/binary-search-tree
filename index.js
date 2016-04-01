@@ -12,7 +12,7 @@ binaryTree.prototype = {
     var currentNode = this.root;
     // Case for no root
     if(!currentNode) {
-      console.error('This tree does not yet contain any values');
+      throw new Error('This tree does not yet contain any values');
       return;
     }
     while(true) {
@@ -61,8 +61,20 @@ binaryTree.prototype = {
           currentNode = currentNode.right;
         }
       }
-    } // while loop
+    }
   }, // add method
+
+  // Add an array of values
+  addArray: function(arr) {
+    for(var i=0; i<arr.length; i++) {
+      if(!arr[i]) {
+        throw new Error('Your array contained a null value');
+      }
+      else {
+        this.add(arr[i]);
+      };
+    };
+  }, // addArray method
 
   // Remove node method
   remove: function(val) {
@@ -78,12 +90,17 @@ binaryTree.prototype = {
     return output;
   }, // size method
 
+  // Get height method
+  height: function() {
+
+  }, // height method
+
   // Get min value
   min: function() {
     var currentNode = this.root;
     // Case for no root
     if(!currentNode) {
-      console.error('This tree does not yet contain any values');
+      throw new Error('This tree does not yet contain any values');
       return;
     }
     while(currentNode.left) {
@@ -97,7 +114,7 @@ binaryTree.prototype = {
     var currentNode = this.root;
     // Case for no root
     if(!currentNode) {
-      console.error('This tree does not yet contain any values');
+      throw new Error('This tree does not yet contain any values');
       return;
     }
     while(currentNode.right) {
@@ -114,6 +131,11 @@ binaryTree.prototype = {
     });
     return arr;
   }, // toArray method
+
+  // Merge another binary tree into this one
+  merge: function(tree) {
+
+  }, // merge method
 
   // Helper traverse method for size() and toArray()
   traverse: function(method) {
