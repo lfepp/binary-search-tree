@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = binaryTree;
+module.exports = BinaryTree;
 
-binaryTree.prototype = {
+BinaryTree.prototype = {
 
   // Constructor
-  constructor: binaryTree,
+  constructor: BinaryTree,
 
   // Method to see if tree contains a value
   contains: function(val) {
@@ -77,8 +77,42 @@ binaryTree.prototype = {
   }, // addArray method
 
   // Remove node method
-  remove: function(val) {
-
+  remove: function(val, currentNode) {
+    // Current node vairable - defaults to this.root
+    currentNode = currentNode || this.root;
+    // Throw error if there is no root
+    if(!currentNode) {
+      throw new Error ('This tree does not yet contain any values');
+    }
+    if(val === currentNode.value) {
+      if(!currentNode.left && !currentNode.right) {
+        currentNode = null;
+      }
+      else if(currentNode.left && !currentNode.right) {
+        var temp = currentNode.right;
+        currentNode = currentNode.left;
+        currentNode.right = temp;
+        currentNode.left = this.remove(currentNode.left.value, currentNode.left);
+      }
+      else if(!currentNode.left && currentNode.right) {
+        var temp = currentNode.left;
+        currentNode = currentNode.right;
+        currentNode.left = temp;
+        currentNode.right = this.remove(currentNode.right.value, currentNode.right);
+      }
+      else {
+        var temp = currentNode.left;
+        currentNode = currentNode.right;
+        currentNode.left = temp;
+        currentNode.right = this.remove(currentNode.right.value, currentNode.right);
+      }
+    }
+    else if(val < currentNode.value) {
+      currentNode.left = this.remove(val, currentNode.left);
+    }
+    else {
+      currentNode.right = this.remove(val, currentNode.right);
+    }
   }, // remove method
 
   // Get size method
@@ -153,7 +187,7 @@ binaryTree.prototype = {
   } // traverse method
 };
 
-function binaryTree() {
+function BinaryTree() {
   this.root = null;
 };
 

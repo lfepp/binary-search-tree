@@ -1,12 +1,12 @@
 'use strict';
 
-var binaryTree = require("./");
+var BinaryTree = require("./");
 var expect = require('chai').expect;
 
 describe('binary tree tests =>', function() {
 
   it('see if the tree contains a value', function() {
-    var test = new binaryTree();
+    var test = new BinaryTree();
     test.addArray([7, 43, 13]);
     var test1 = test.contains(7);
     var test2 = test.contains(50);
@@ -18,7 +18,7 @@ describe('binary tree tests =>', function() {
   });
 
   it('adds values to the binary tree', function () {
-    var test = new binaryTree();
+    var test = new BinaryTree();
     test.add(7);
     test.add(43);
     test.add(13);
@@ -54,7 +54,7 @@ describe('binary tree tests =>', function() {
   });
 
   it('adds an array of values to the binary tree', function() {
-    var test = new binaryTree();
+    var test = new BinaryTree();
     test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
     expect(JSON.stringify(test)).to.equal(JSON.stringify({
       root:
@@ -79,12 +79,108 @@ describe('binary tree tests =>', function() {
     }));
 });
 
-  /*it('removes nodes from the binary tree', function() {
-
-});*/
+  it('removes nodes from the binary tree', function() {
+    var test = new BinaryTree();
+    test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+    // Case when removing a value without any children
+    test.remove(92);
+    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+      root:
+       { value: 7,
+         left:
+          { value: 2,
+            left: { value: 1, left: null, right: null },
+            right: null },
+         right:
+          { value: 43,
+            left:
+             { value: 13,
+               left: { value: 8, left: null, right: null },
+               right:
+                { value: 27,
+                  left: { value: 19, left: null, right: null },
+                  right: null } },
+            right:
+             { value: 82,
+               left: null,
+               right: null } } }
+    }));
+    test.add(92);
+    // Case when removing a value with only a left child
+    test.remove(27);
+    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+      root:
+       { value: 7,
+         left:
+          { value: 2,
+            left: { value: 1, left: null, right: null },
+            right: null },
+         right:
+          { value: 43,
+            left:
+             { value: 13,
+               left: { value: 8, left: null, right: null },
+               right:
+                { value: 19,
+                  left: null,
+                  right: null } },
+            right:
+             { value: 82,
+               left: null,
+               right: { value: 92, left: null, right: null } } } }
+    }));
+    test.add(27);
+    // Case when removing a value with only a right child
+    test.remove(82);
+    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+      root:
+       { value: 7,
+         left:
+          { value: 2,
+            left: { value: 1, left: null, right: null },
+            right: null },
+         right:
+          { value: 43,
+            left:
+             { value: 13,
+               left: { value: 8, left: null, right: null },
+               right:
+                { value: 27,
+                  left: { value: 19, left: null, right: null },
+                  right: null } },
+            right:
+             { value: 92,
+               left: null,
+               right: null } } }
+    }));
+    test.add(82);
+    // Case when removing a value with two children
+    test.remove(43);
+    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+      root:
+       { value: 7,
+         left:
+          { value: 2,
+            left: { value: 1, left: null, right: null },
+            right: null },
+         right:
+          { value: 82,
+            left:
+             { value: 13,
+               left: { value: 8, left: null, right: null },
+               right:
+                { value: 27,
+                  left: { value: 19, left: null, right: null },
+                  right: null } },
+            right:
+             { value: 92,
+               left: null,
+               right: null } } }
+    }));
+});
 
   it('queries the size of the binary tree', function() {
-    var test = new binaryTree();
+    var test = new BinaryTree();
     test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
     expect(test.size()).to.equal(10);
 });
@@ -94,19 +190,19 @@ describe('binary tree tests =>', function() {
 });*/
 
   it('queries the minimum value of the binary tree', function() {
-    var test = new binaryTree();
+    var test = new BinaryTree();
     test.addArray([3, 7, 9, 2, 13]);
     expect(test.min()).to.equal(2);
   });
 
   it('queries the maximum value of the binary tree', function() {
-    var test = new binaryTree();
+    var test = new BinaryTree();
     test.addArray([3, 7, 9, 2, 13]);
     expect(test.max()).to.equal(13);
   });
 
   it('queries for the binary tree as an array of values', function() {
-    var test = new binaryTree();
+    var test = new BinaryTree();
     test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
     expect(test.toArray()).to.deep.equal([1, 2, 7, 8, 13, 19, 27, 43, 82, 92]);
   });
