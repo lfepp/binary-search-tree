@@ -164,22 +164,18 @@ describe('binary tree tests =>', function() {
             left: { value: 1, left: null, right: null },
             right: null },
          right:
-          { value: 8,
-            left: null,
-            right:
-            { value: 13,
-              left: null,
-              right:
-              { value: 19,
-                left: null,
+          { value: 92,
+            left:
+            { value: 82,
+              left:
+              { value: 13,
+                left: { value: 8, left: null, right: null },
                 right:
-                { value: 27,
-                  left: null,
-                  right:
-                  { value: 82,
-                    left: null,
-                    right:
-                    { value: 92, left: null, right: null } } } } } } }
+                 { value: 19,
+                   left: null,
+                   right: { value: 27, left: null, right: null } } },
+              right: null },
+            right: null } }
     }));
 });
 

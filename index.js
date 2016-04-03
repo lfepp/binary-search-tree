@@ -78,16 +78,15 @@ BinaryTree.prototype = {
 
   // Remove node method
   remove: function(val, currentNode) {
-    var arr = [];
-    // Helper method for traversing the nodes in order
-    function inOrder(currentNode) {
+    // Recursive left node helper function
+    function left(currentNode, append) {
       if(currentNode.left) {
-        inOrder(currentNode.left);
+        currentNode.left = left(currentNode.left, append);
       }
-      arr.push(currentNode.value);
-      if(currentNode.right) {
-        inOrder(currentNode.right);
+      else {
+        currentNode.left = append;
       }
+      return currentNode;
     }
     // Default the currentNode variable to this.root
     currentNode = currentNode || this.root;
@@ -106,17 +105,9 @@ BinaryTree.prototype = {
         currentNode = currentNode.right;
       }
       else {
-        // TODO clean this up with regression instead of helper function and replacement tree
-        // Replacement for currentNode
-        var replacement = new BinaryTree();
-        inOrder(currentNode.left);
-        inOrder(currentNode.right);
-        // Add all values below currentNode to replacement
-        for(var i=0; i<arr.length; i++) {
-          replacement.add(arr[i]);
-        }
-        arr = []; // Clear array
-        currentNode = replacement.root;
+        var temp = currentNode.left;
+        currentNode = currentNode.right;
+        currentNode.left = left(currentNode.left, temp);
       }
     }
     else if(val < currentNode.value) {
