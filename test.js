@@ -229,8 +229,31 @@ it('queries the height of the binary tree', function() {
     }));
 });
 
-  /*it('balnaces a binary tree', function() {
-
-});*/
+  it('balances a binary tree', function() {
+    var test = new BinaryTree();
+    test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+    test.balance();
+    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+      root:
+        { value: 13,
+          left:
+            { value: 2,
+              left: { value: 1, left: null, right: null },
+              right:
+                { value: 8,
+                  left: { value: 7, left: null, right: null },
+                  right: null } },
+          right:
+            { value: 43,
+              left:
+                { value: 27,
+                  left: { value: 19, left: null, right: null },
+                  right: null },
+              right:
+                { value: 92,
+                  left: { value: 82, left: null, right: null },
+                  right: null } } }
+    }));
+});
 
 });

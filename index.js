@@ -197,12 +197,43 @@ BinaryTree.prototype = {
 
   // Balace the binary search tree
   balance: function() {
-    var arr = this.toArray();
-    /* Pseduocode:
-    Get the Middle of the array and make it root.
-Recursively do same for left half and right half.
-      Get the middle of left half and make it left child of the root created in step 1.
-      Get the middle of right half and make it right child of the root created in step 1.*/
+      // Helper function to find median
+      function median(arr) {
+        if(arr.length % 2 === 0) {
+          return Math.floor(arr.length / 2) - 1;
+        }
+        else {
+          return Math.floor(arr.length / 2);
+        }
+      }
+      // Helper function to recursively balance half the tree
+      function balanceSide(currentNode, arr) {
+        if(arr.length === 1) {
+          var node = new Node(arr[0]);
+          currentNode = node;
+        }
+        else if(arr.length === 2) {
+          var node = new Node(arr[1]);
+          var left = new Node(arr[0]);
+          currentNode = node;
+          currentNode.left = left;
+        }
+        else {
+          var mid = median(arr);
+          var node = new Node(arr[mid]);
+          node.left = balanceSide(node.left, arr.slice(0, mid));
+          node.right = balanceSide(node.right, arr.slice(mid + 1));
+          currentNode = node;
+        }
+        return currentNode;
+      }
+
+      var arr = this.toArray();
+      var mid = median(arr);
+      var root = new Node(arr[mid]);
+      root.left = balanceSide(root.left, arr.slice(0, mid));
+      root.right = balanceSide(root.right, arr.slice(mid + 1))
+      this.root = root;
   }, // balance method
 
   // Helper traverse method for size() and toArray()
