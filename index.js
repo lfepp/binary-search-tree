@@ -129,8 +129,25 @@ BinaryTree.prototype = {
   }, // size method
 
   // Get height method
-  height: function() {
-
+  height: function(currentNode) {
+    // Default currentNode to root
+    currentNode = currentNode || this.root;
+    var heightRight = -1;
+    var heightLeft = -1;
+    if(currentNode.right) {
+      heightRight = this.height(currentNode.right);
+    }
+    if(currentNode.left) {
+      heightLeft = this.height(currentNode.left);
+    }
+    if(heightRight > heightLeft) {
+      heightRight++;
+      return heightRight;
+    }
+    else {
+      heightLeft++;
+      return heightLeft;
+    }
   }, // height method
 
   // Get min value
@@ -188,7 +205,16 @@ BinaryTree.prototype = {
         inOrder(currentNode.right);
       }
     };
-  } // traverse method
+  }, // traverse method
+
+  // Helper method to balance the search tree
+  balance: function() {
+    /* Pseduocode:
+    Get the Middle of the array and make it root.
+Recursively do same for left half and right half.
+      Get the middle of left half and make it left child of the root created in step 1.
+      Get the middle of right half and make it right child of the root created in step 1.*/
+  } // balance method
 };
 
 function BinaryTree() {

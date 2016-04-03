@@ -185,9 +185,11 @@ describe('binary tree tests =>', function() {
     expect(test.size()).to.equal(10);
 });
 
-/*it('queries the height of the binary tree', function() {
-
-});*/
+it('queries the height of the binary tree', function() {
+  var test = new BinaryTree();
+  test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+  expect(test.height()).to.equal(4);
+});
 
   it('queries the minimum value of the binary tree', function() {
     var test = new BinaryTree();
