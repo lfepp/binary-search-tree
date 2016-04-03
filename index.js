@@ -78,7 +78,18 @@ BinaryTree.prototype = {
 
   // Remove node method
   remove: function(val, currentNode) {
-    // Current node vairable - defaults to this.root
+    var arr = [];
+    // Helper method for traversing the nodes in order
+    function inOrder(currentNode) {
+      if(currentNode.left) {
+        inOrder(currentNode.left);
+      }
+      arr.push(currentNode.value);
+      if(currentNode.right) {
+        inOrder(currentNode.right);
+      }
+    }
+    // Default the currentNode variable to this.root
     currentNode = currentNode || this.root;
     // Throw error if there is no root
     if(!currentNode) {
@@ -89,22 +100,23 @@ BinaryTree.prototype = {
         currentNode = null;
       }
       else if(currentNode.left && !currentNode.right) {
-        var temp = currentNode.right;
         currentNode = currentNode.left;
-        currentNode.right = temp;
-        currentNode.left = this.remove(currentNode.left.value, currentNode.left);
       }
       else if(!currentNode.left && currentNode.right) {
-        var temp = currentNode.left;
         currentNode = currentNode.right;
-        currentNode.left = temp;
-        currentNode.right = this.remove(currentNode.right.value, currentNode.right);
       }
       else {
-        var temp = currentNode.left;
-        currentNode = currentNode.right;
-        currentNode.left = temp;
-        currentNode.right = this.remove(currentNode.right.value, currentNode.right);
+        // TODO clean this up with regression instead of helper function and replacement tree
+        // Replacement for currentNode
+        var replacement = new BinaryTree();
+        inOrder(currentNode.left);
+        inOrder(currentNode.right);
+        // Add all values below currentNode to replacement
+        for(var i=0; i<arr.length; i++) {
+          replacement.add(arr[i]);
+        }
+        arr = []; // Clear array
+        currentNode = replacement.root;
       }
     }
     else if(val < currentNode.value) {
@@ -113,6 +125,7 @@ BinaryTree.prototype = {
     else {
       currentNode.right = this.remove(val, currentNode.right);
     }
+    return currentNode;
   }, // remove method
 
   // Get size method
