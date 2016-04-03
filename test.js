@@ -209,7 +209,27 @@ it('queries the height of the binary tree', function() {
     expect(test.toArray()).to.deep.equal([1, 2, 7, 8, 13, 19, 27, 43, 82, 92]);
   });
 
-  /*it('merges another binary tree into the first binary tree', function() {
+  it('merges one binary tree into another binary tree', function() {
+    var test1 = new BinaryTree();
+    var test2 = new BinaryTree();
+    test1.addArray([4, 12, 7]);
+    test2.addArray([3, 9, 17]);
+    test1.merge(test2);
+    expect(JSON.stringify(test1)).to.equal(JSON.stringify({
+      root:
+      { value: 4,
+        left: { value: 3, left: null, right: null },
+        right:
+        { value: 12,
+          left:
+          { value: 7,
+            left: null,
+            right: { value: 9, left: null, right: null } },
+          right: { value: 17, left: null, right: null } } }
+    }));
+});
+
+  /*it('balnaces a binary tree', function() {
 
 });*/
 

@@ -189,8 +189,21 @@ BinaryTree.prototype = {
 
   // Merge another binary tree into this one
   merge: function(tree) {
-
+    var arr = tree.toArray();
+    for(var i=0; i<arr.length; i++) {
+      this.add(arr[i]);
+    }
   }, // merge method
+
+  // Balace the binary search tree
+  balance: function() {
+    var arr = this.toArray();
+    /* Pseduocode:
+    Get the Middle of the array and make it root.
+Recursively do same for left half and right half.
+      Get the middle of left half and make it left child of the root created in step 1.
+      Get the middle of right half and make it right child of the root created in step 1.*/
+  }, // balance method
 
   // Helper traverse method for size() and toArray()
   traverse: function(method) {
@@ -205,16 +218,7 @@ BinaryTree.prototype = {
         inOrder(currentNode.right);
       }
     };
-  }, // traverse method
-
-  // Helper method to balance the search tree
-  balance: function() {
-    /* Pseduocode:
-    Get the Middle of the array and make it root.
-Recursively do same for left half and right half.
-      Get the middle of left half and make it left child of the root created in step 1.
-      Get the middle of right half and make it right child of the root created in step 1.*/
-  } // balance method
+  } // traverse method
 };
 
 function BinaryTree() {
