@@ -1,20 +1,17 @@
 'use strict';
 
-var BinaryTree = require("./");
-var expect = require('chai').expect;
+import BinaryTree from "../bin/core.js";
+import {expect} from "chai";
 
-describe('binary tree tests =>', function() {
+describe('binary tree tests =>', () => {
 
-  it('see if the tree contains a value', function() {
-    var test = new BinaryTree();
-    test.addArray([7, 43, 13]);
-    var test1 = test.contains(7);
-    var test2 = test.contains(50);
-    var test3 = test.contains(13);
-
-    expect(test1).to.be.true;
-    expect(test2).to.be.false;
-    expect(test3).to.be.true;
+  it('see if the tree contains a value', () => {
+    let state = new BinaryTree();
+    state.addArray([7, 43, 13]);
+    
+    expect(state.contains(7)).to.be.true;
+    expect(state.contains(50)).to.be.false;
+    expect(state.contains(13)).to.be.true;
   });
 
   it('adds values to the binary tree', function () {
