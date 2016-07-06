@@ -10,15 +10,15 @@ NodeJS module to implement a binary search tree
 npm install --save
 ```
 
-### Testing and releasing
+## Testing and releasing
 
-#### Test command
+### Test command
 
 ```
 npm test
 ```
 
-#### Release script
+### Release script
 
 ```
 ./release.sh
