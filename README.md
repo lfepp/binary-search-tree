@@ -1,5 +1,25 @@
 # Binary Search Tree
 
-Module to implement a binary search tree
+NodeJS module to implement a binary search tree
 
-WIP
+## Usage
+
+### Installation
+
+```
+npm install --save
+```
+
+### Testing and releasing
+
+#### Test command
+
+```
+npm test
+```
+
+#### Release script
+
+```
+./release.sh
+```

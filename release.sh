@@ -10,10 +10,6 @@ read newversion
 echo "Creating version ${newversion}"
 sed -i "" "s/${currentversion}/${newversion}/g" package.json
 
-# Compile core logic from ES6 to ES5
-echo "Compiling core logic"
-npm run compile
-
 # Push updates to GitHub
 echo "Pushing changes to GitHub"
 echo "Please enter a commit message:"
