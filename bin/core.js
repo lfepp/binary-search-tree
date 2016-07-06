@@ -1,15 +1,23 @@
 'use strict';
 
-module.exports = BinaryTree;
+export class Node {
+  constructor(val) {
+    this.value = val;
+    this.left = null;
+    this.right = null;
+  }
+}
 
-BinaryTree.prototype = {
+export default class BinaryTree {
 
   // Constructor
-  constructor: BinaryTree,
+  constructor() {
+    this.root = null;
+  }
 
   // Method to see if tree contains a value
-  contains: function(val) {
-    var currentNode = this.root;
+  contains(val) {
+    let currentNode = this.root;
     // Case for no root
     if(!currentNode) {
       throw new Error('This tree does not yet contain any values');
@@ -29,18 +37,18 @@ BinaryTree.prototype = {
         currentNode = currentNode.right;
       }
     }
-  },
+  }
 
   // Add node method
-  add: function(val) {
-    var root = this.root;
+  add(val) {
+    let root = this.root;
     // Set root
     if(!root) {
       this.root = new Node(val);
       return;
     }
-    var currentNode = root;
-    var newNode = new Node(val);
+    let currentNode = root;
+    let newNode = new Node(val);
     // Traverse to find position and add node
     while(currentNode) {
       if(val < currentNode.value) {
@@ -62,22 +70,22 @@ BinaryTree.prototype = {
         }
       }
     }
-  }, // add method
+  } // add method
 
   // Add an array of values
-  addArray: function(arr) {
-    for(var i=0; i<arr.length; i++) {
+  addArray(arr) {
+    for(let i=0; i<arr.length; i++) {
       if(!arr[i]) {
         throw new Error('Your array contained a null value');
       }
       else {
         this.add(arr[i]);
-      };
-    };
-  }, // addArray method
+      }
+    }
+  } // addArray method
 
   // Remove node method
-  remove: function(val, currentNode) {
+  remove(val, currentNode) {
     // Recursive left node helper function
     function left(currentNode, append) {
       if(currentNode.left) {
@@ -105,7 +113,7 @@ BinaryTree.prototype = {
         currentNode = currentNode.right;
       }
       else {
-        var temp = currentNode.left;
+        let temp = currentNode.left;
         currentNode = currentNode.right;
         currentNode.left = left(currentNode.left, temp);
       }
@@ -117,19 +125,19 @@ BinaryTree.prototype = {
       currentNode.right = this.remove(val, currentNode.right);
     }
     return currentNode;
-  }, // remove method
+  } // remove method
 
   // Get size method
-  size: function() {
-    var output = 0;
-    this.traverse(function(currentNode) {
+  size() {
+    let output = 0;
+    this.traverse((currentNode) => {
       output++;
     });
     return output;
-  }, // size method
+  } // size method
 
   // Get height method
-  height: function(currentNode) {
+  height(currentNode) {
     // Default currentNode to root
     currentNode = currentNode || this.root;
     var heightRight = -1;
@@ -148,11 +156,11 @@ BinaryTree.prototype = {
       heightLeft++;
       return heightLeft;
     }
-  }, // height method
+  } // height method
 
   // Get min value
-  min: function() {
-    var currentNode = this.root;
+  min() {
+    let currentNode = this.root;
     // Case for no root
     if(!currentNode) {
       throw new Error('This tree does not yet contain any values');
@@ -162,11 +170,11 @@ BinaryTree.prototype = {
       currentNode = currentNode.left;
     }
     return currentNode.value;
-  }, // min method
+  } // min method
 
   // Get max value
-  max: function() {
-    var currentNode = this.root;
+  max() {
+    let currentNode = this.root;
     // Case for no root
     if(!currentNode) {
       throw new Error('This tree does not yet contain any values');
@@ -176,27 +184,27 @@ BinaryTree.prototype = {
       currentNode = currentNode.right;
     }
     return currentNode.value;
-  }, // max method
+  } // max method
 
   // Get sorted array of values
-  toArray: function() {
-    var arr = [];
-    this.traverse(function(currentNode) {
+  toArray() {
+    let arr = [];
+    this.traverse((currentNode) => {
       arr.push(currentNode.value);
     });
     return arr;
-  }, // toArray method
+  } // toArray method
 
   // Merge another binary tree into this one
-  merge: function(tree) {
-    var arr = tree.toArray();
-    for(var i=0; i<arr.length; i++) {
+  merge(tree) {
+    let arr = tree.toArray();
+    for(let i=0; i<arr.length; i++) {
       this.add(arr[i]);
     }
-  }, // merge method
+  } // merge method
 
   // Balace the binary search tree
-  balance: function() {
+  balance() {
       // Helper function to find median
       function median(arr) {
         if(arr.length % 2 === 0) {
@@ -228,16 +236,16 @@ BinaryTree.prototype = {
         return currentNode;
       }
 
-      var arr = this.toArray();
-      var mid = median(arr);
-      var root = new Node(arr[mid]);
+      let arr = this.toArray();
+      let mid = median(arr);
+      let root = new Node(arr[mid]);
       root.left = balanceSide(root.left, arr.slice(0, mid));
       root.right = balanceSide(root.right, arr.slice(mid + 1))
       this.root = root;
-  }, // balance method
+  } // balance method
 
   // Helper traverse method for size() and toArray()
-  traverse: function(method) {
+  traverse(method) {
     inOrder(this.root);
     // Helper method for traversing the nodes in order
     function inOrder(currentNode) {
@@ -248,16 +256,6 @@ BinaryTree.prototype = {
       if(currentNode.right) {
         inOrder(currentNode.right);
       }
-    };
+    }
   } // traverse method
 };
-
-function BinaryTree() {
-  this.root = null;
-};
-
-function Node(val) {
-  this.value = val;
-  this.left = null;
-  this.right = null;
-}
