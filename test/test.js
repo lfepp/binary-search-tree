@@ -6,28 +6,28 @@ import {expect} from "chai";
 describe('binary tree tests =>', () => {
 
   it('see if the tree contains a value', () => {
-    let state = new BinaryTree();
-    state.addArray([7, 43, 13]);
-    
-    expect(state.contains(7)).to.be.true;
-    expect(state.contains(50)).to.be.false;
-    expect(state.contains(13)).to.be.true;
+    let tree = new BinaryTree();
+    tree.addArray([7, 43, 13]);
+
+    expect(tree.contains(7)).to.be.true;
+    expect(tree.contains(50)).to.be.false;
+    expect(tree.contains(13)).to.be.true;
   });
 
-  it('adds values to the binary tree', function () {
-    var test = new BinaryTree();
-    test.add(7);
-    test.add(43);
-    test.add(13);
-    test.add(27);
-    test.add(82);
-    test.add(2);
-    test.add(19);
-    test.add(8);
-    test.add(1);
-    test.add(92);
+  it('adds values to the binary tree', () => {
+    let tree = new BinaryTree();
+    tree.add(7);
+    tree.add(43);
+    tree.add(13);
+    tree.add(27);
+    tree.add(82);
+    tree.add(2);
+    tree.add(19);
+    tree.add(8);
+    tree.add(1);
+    tree.add(92);
 
-    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+    expect(JSON.stringify(tree)).to.equal(JSON.stringify({
       root:
        { value: 7,
          left:
@@ -50,10 +50,10 @@ describe('binary tree tests =>', () => {
     }));
   });
 
-  it('adds an array of values to the binary tree', function() {
-    var test = new BinaryTree();
-    test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
-    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+  it('adds an array of values to the binary tree', () => {
+    let tree = new BinaryTree();
+    tree.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+    expect(JSON.stringify(tree)).to.equal(JSON.stringify({
       root:
        { value: 7,
          left:
@@ -76,12 +76,12 @@ describe('binary tree tests =>', () => {
     }));
 });
 
-  it('removes nodes from the binary tree', function() {
-    var test = new BinaryTree();
-    test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+  it('removes nodes from the binary tree', () => {
+    let tree = new BinaryTree();
+    tree.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
     // Case when removing a value without any children
-    test.remove(92);
-    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+    tree.remove(92);
+    expect(JSON.stringify(tree)).to.equal(JSON.stringify({
       root:
        { value: 7,
          left:
@@ -102,10 +102,10 @@ describe('binary tree tests =>', () => {
                left: null,
                right: null } } }
     }));
-    test.add(92);
+    tree.add(92);
     // Case when removing a value with only a left child
-    test.remove(27);
-    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+    tree.remove(27);
+    expect(JSON.stringify(tree)).to.equal(JSON.stringify({
       root:
        { value: 7,
          left:
@@ -126,10 +126,10 @@ describe('binary tree tests =>', () => {
                left: null,
                right: { value: 92, left: null, right: null } } } }
     }));
-    test.add(27);
+    tree.add(27);
     // Case when removing a value with only a right child
-    test.remove(82);
-    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+    tree.remove(82);
+    expect(JSON.stringify(tree)).to.equal(JSON.stringify({
       root:
        { value: 7,
          left:
@@ -150,10 +150,10 @@ describe('binary tree tests =>', () => {
                left: null,
                right: null } } }
     }));
-    test.add(82);
+    tree.add(82);
     // Case when removing a value with two children
-    test.remove(43);
-    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+    tree.remove(43);
+    expect(JSON.stringify(tree)).to.equal(JSON.stringify({
       root:
        { value: 7,
          left:
@@ -176,43 +176,43 @@ describe('binary tree tests =>', () => {
     }));
 });
 
-  it('queries the size of the binary tree', function() {
-    var test = new BinaryTree();
-    test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
-    expect(test.size()).to.equal(10);
+  it('queries the size of the binary tree', () => {
+    let tree = new BinaryTree();
+    tree.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+    expect(tree.size()).to.equal(10);
 });
 
-it('queries the height of the binary tree', function() {
-  var test = new BinaryTree();
-  test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
-  expect(test.height()).to.equal(4);
+it('queries the height of the binary tree', () => {
+  let tree = new BinaryTree();
+  tree.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+  expect(tree.height()).to.equal(4);
 });
 
-  it('queries the minimum value of the binary tree', function() {
-    var test = new BinaryTree();
-    test.addArray([3, 7, 9, 2, 13]);
-    expect(test.min()).to.equal(2);
+  it('queries the minimum value of the binary tree', () => {
+    let tree = new BinaryTree();
+    tree.addArray([3, 7, 9, 2, 13]);
+    expect(tree.min()).to.equal(2);
   });
 
-  it('queries the maximum value of the binary tree', function() {
-    var test = new BinaryTree();
-    test.addArray([3, 7, 9, 2, 13]);
-    expect(test.max()).to.equal(13);
+  it('queries the maximum value of the binary tree', () => {
+    let tree = new BinaryTree();
+    tree.addArray([3, 7, 9, 2, 13]);
+    expect(tree.max()).to.equal(13);
   });
 
-  it('queries for the binary tree as an array of values', function() {
-    var test = new BinaryTree();
-    test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
-    expect(test.toArray()).to.deep.equal([1, 2, 7, 8, 13, 19, 27, 43, 82, 92]);
+  it('queries for the binary tree as an array of values', () => {
+    let tree = new BinaryTree();
+    tree.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+    expect(tree.toArray()).to.deep.equal([1, 2, 7, 8, 13, 19, 27, 43, 82, 92]);
   });
 
-  it('merges one binary tree into another binary tree', function() {
-    var test1 = new BinaryTree();
-    var test2 = new BinaryTree();
-    test1.addArray([4, 12, 7]);
-    test2.addArray([3, 9, 17]);
-    test1.merge(test2);
-    expect(JSON.stringify(test1)).to.equal(JSON.stringify({
+  it('merges one binary tree into another binary tree', () => {
+    let tree1 = new BinaryTree();
+    let tree2 = new BinaryTree();
+    tree1.addArray([4, 12, 7]);
+    tree2.addArray([3, 9, 17]);
+    tree1.merge(tree2);
+    expect(JSON.stringify(tree1)).to.equal(JSON.stringify({
       root:
       { value: 4,
         left: { value: 3, left: null, right: null },
@@ -226,11 +226,11 @@ it('queries the height of the binary tree', function() {
     }));
 });
 
-  it('balances a binary tree', function() {
-    var test = new BinaryTree();
-    test.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
-    test.balance();
-    expect(JSON.stringify(test)).to.equal(JSON.stringify({
+  it('balances a binary tree', () => {
+    let tree = new BinaryTree();
+    tree.addArray([7, 43, 13, 27, 82, 2, 19, 8, 1, 92]);
+    tree.balance();
+    expect(JSON.stringify(tree)).to.equal(JSON.stringify({
       root:
         { value: 13,
           left:
