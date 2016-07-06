@@ -1,6 +1,6 @@
 'use strict';
 
-export class Node {
+class Node {
   constructor(val) {
     this.value = val;
     this.left = null;
