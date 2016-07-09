@@ -1,3 +1,3 @@
 'use strict';
 
-export BinaryTree from "./bin/core.js";
+export BinaryTree from "./src/core.js";

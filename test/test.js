@@ -1,6 +1,6 @@
 'use strict';
 
-import BinaryTree from "../bin/core.js";
+import BinaryTree from "../src/core.js";
 import {expect} from "chai";
 
 describe('binary tree tests =>', () => {
