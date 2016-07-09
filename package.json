@@ -1,5 +1,5 @@
 {
-  "name": "binary-search-tree",
+  "name": "node-binary-search-tree",
   "version": "1.1.0",
   "description": "Binary search tree",
   "main": "index.js",
